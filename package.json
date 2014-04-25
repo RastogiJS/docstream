@@ -1,0 +1,15 @@
+{
+  "name": "docstream",
+  "version": "0.0.1",
+  "description": "Node.js utility to turn _all_docs JSON into individual 'doc' objects",
+  "main": "docstream.js",
+  "repository": "https://github.com/glynnbird/docstream",
+  "keywords": [
+    "CouchDB",
+    "stream"
+  ],
+  "author": "Glynn Bird",
+  "license": "BSD",
+  "dependencies": {
+  }
+}

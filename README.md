@@ -1,4 +1,17 @@
-## DocStream 
+# DocStream 
+
+
+## Installation
+
+This utility requires Node.js and can be installed via the "npm" utility
+
+```
+sudo npm install -g docstream
+```
+
+After that, the "docstream" command should be available at the command-line
+
+## Introduction
 
 CouchDB's "_all_docs" endpoint gets you all the documents in database in this form
 
@@ -66,7 +79,7 @@ If you are wanting to export the data and put it in Redshift, for example, the J
 The jq utility allows JSON to be parsed and reformatted on the command-line. e.g. 
 
 ```
-  curl 'http://mycouchdbserver?_all_docs?include_docs=true_' | jq '.rows[].doc'
+  curl 'http://mycouchdbserver?_all_docs?include_docs=true' | jq '.rows[].doc'
 ```
 
 (Thanks to Cloudant Support for this solution). Unfortunately it is not suitable for large data sets as jq requires all of the data to be in-memory.
@@ -76,7 +89,7 @@ The jq utility allows JSON to be parsed and reformatted on the command-line. e.g
 DocStream takes _all_docs data in on stdin and outputs just the "doc" section:
 
 ```
-  curl 'http://mycouchdbserver?_all_docs?include_docs=true_' | node docstream.js'
+  curl 'http://mycouchdbserver?_all_docs?include_docs=true' | docstream
 ```
 
 This is should work with any size of data set, as long as each document appears per line.
@@ -84,5 +97,5 @@ This is should work with any size of data set, as long as each document appears 
 e.g.
 
 ```
- cat sample.txt | ./docstream.js | gzip > output.txt.gz
+ cat sample.txt | docstream | gzip > output.txt.gz
 ```

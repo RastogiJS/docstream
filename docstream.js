@@ -1,5 +1,3 @@
-#!/usr/local/bin/node
-
 // libraries
 var liner = require("./lib/liner.js"),
   parser = require('./lib/parser.js');

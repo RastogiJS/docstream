@@ -1,1 +1,2 @@
-../docstream.js
+#!/usr/bin/env node
+require('../docstream.js');

@@ -1,6 +1,6 @@
 {
   "name": "docstream",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js utility to turn _all_docs JSON into individual 'doc' objects",
   "main": "docstream.js",
   "repository": "https://github.com/glynnbird/docstream",

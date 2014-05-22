@@ -11,5 +11,8 @@
   "author": "Glynn Bird",
   "license": "BSD",
   "dependencies": {
+  },
+  "bin": {
+    "docstream": "bin/docstream.js"
   }
 }

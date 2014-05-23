@@ -79,10 +79,10 @@ If you are wanting to export the data and put it in Redshift, for example, the J
 The jq utility allows JSON to be parsed and reformatted on the command-line. e.g. 
 
 ```
-  curl 'http://mycouchdbserver?_all_docs?include_docs=true' | jq '.rows[].doc'
+  curl 'http://mycouchdbserver?_all_docs?include_docs=true' | tail -n +2 | head -n -1 | sed 's/,\s*$//' | jq '.doc'
 ```
 
-(Thanks to Cloudant Support for this solution). Unfortunately it is not suitable for large data sets as jq requires all of the data to be in-memory.
+( Thanks to @fugu13 for this solution)
 
 ### Solution 2 - Use this docstream.js utility
 

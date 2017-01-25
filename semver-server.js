@@ -2,7 +2,7 @@ const cluster = require('cluster')
 const restify = require('restify')
 const plugins = require('restify-plugins')
 const semver = require('semver')
-const numCPUs = require('os').cpus().length
+const numCPUs = require('os').cpus().length * 2
 const req = require('req-fast')
 
 const couchURL = process.env.NPM_URL || 'http://localhost:55590/registry'

@@ -591,7 +591,7 @@ req-fast:
     tunnel2 "0.0.4"
     urijs "^1.18.4"
 
-request@^2.74.0:
+request, request@^2.74.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:

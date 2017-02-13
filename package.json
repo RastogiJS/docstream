@@ -14,6 +14,7 @@
     "npm-package-arg": "^4.2.0",
     "redis": "^2.6.5",
     "req-fast": "^0.2.17",
+    "request": "^2.79.0",
     "requestretry": "^1.12.0",
     "restify": "^4.3.0",
     "restify-plugins": "^1.5.1",

@@ -3,19 +3,19 @@ const restify = require('restify')
 const plugins = require('restify-plugins')
 const semver = require('semver')
 const numCPUs = require('os').cpus().length * 2
-const req = require('req-fast')
+const req = require('request')
 const npa = require('npm-package-arg')
 
 const couchURL = process.env.NPM_URL || 'http://localhost:55590/registry'
 
 const map = new Map()
 
-const getVersions = (dep, range, cb) => req(`${couchURL}/_design/app/_view/allVersions?key="${dep}"`, function (err, resp) {
+const getVersions = (dep, range, cb) => req(`${couchURL}/_design/app/_view/allVersions?key="${dep}"`, {json: true}, function (err, resp, obj) {
   if (err) {
     cb(err, null)
   }
-  if (!resp.body.error && semver.validRange(range) && resp.body.rows.length > 0) {
-    const clean = resp.body.rows[0].value.filter(ver => semver.clean(ver))
+  if (!obj.error && semver.validRange(range) && obj.rows.length > 0) {
+    const clean = obj.rows[0].value.filter(ver => semver.clean(ver))
     map.set(dep, clean)
     cb(null, semver.maxSatisfying(clean, range))
   } else

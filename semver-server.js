@@ -45,7 +45,7 @@ if (cluster.isMaster) {
   server.use(plugins.queryParser())
   server.use(plugins.bodyParser())
 
-  server.post('/resolve/', function (req, res, next) {
+  server.post('/resolve', function (req, res, next) {
     console.log(req.body)
     getVersionsCache(req.body.depname, req.body.range, (err, version) => {
       console.log('Responded by worker #' + cluster.worker.id)

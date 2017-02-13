@@ -10,7 +10,7 @@ const couchURL = process.env.NPM_URL || 'http://localhost:55590/registry'
 
 const map = new Map()
 
-const getVersions = (dep, range, cb) => req(`${couchURL}/_design/app/_view/allVersions?key="${dep}"`, {json: true}, function (err, resp, obj) {
+const getVersions = (dep, range, cb) => req.get(`${couchURL}/_design/app/_view/allVersions?key="${dep}"`, {json: true}, function (err, resp, obj) {
   if (err) {
     cb(err, null)
   }
@@ -23,17 +23,18 @@ const getVersions = (dep, range, cb) => req(`${couchURL}/_design/app/_view/allVe
 })
 
 const getVersionsCache = (dep, range, cb) => {
-  let parsed = npa(dep).escapedName
-  console.log(npa(dep))
-  parsed = JSON.stringify(parsed)
+  const parsed = npa(dep).escapedName
   if (!parsed) {
+    console.log('not parsed')
     cb(null, null)
   }
 
   if (map.has(parsed)) {
+    console.log('cache hit')
     const clean = map.get(parsed)
     cb(null, semver.maxSatisfying(clean, range))
   } else {
+    console.log('no cache, request')
     return getVersions(parsed, range, cb)
   }
 }

@@ -4,6 +4,7 @@ const plugins = require('restify-plugins')
 const semver = require('semver')
 const numCPUs = require('os').cpus().length * 2
 const req = require('req-fast')
+const npa = require('npm-package-arg')
 
 const couchURL = process.env.NPM_URL || 'http://localhost:55590/registry'
 
@@ -22,11 +23,16 @@ const getVersions = (dep, range, cb) => req(`${couchURL}/_design/app/_view/allVe
 })
 
 const getVersionsCache = (dep, range, cb) => {
-  if (map.has(dep)) {
-    const clean = map.get(dep)
+  const parsed = npa(dep).escapedName
+  if (!parsed) {
+    cb(null, null)
+  }
+
+  if (map.has(parsed)) {
+    const clean = map.get(parsed)
     cb(null, semver.maxSatisfying(clean, range))
   } else {
-    return getVersions(dep, range, cb)
+    return getVersions(parsed, range, cb)
   }
 }
 

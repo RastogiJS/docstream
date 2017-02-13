@@ -23,9 +23,9 @@ const getVersions = (dep, range, cb) => req(`${couchURL}/_design/app/_view/allVe
 })
 
 const getVersionsCache = (dep, range, cb) => {
-  const parsed = npa(dep).escapedName
+  let parsed = npa(dep).escapedName
   console.log(npa(dep))
-  console.log(JSON.stringify(parsed))
+  parsed = JSON.stringify(parsed)
   if (!parsed) {
     cb(null, null)
   }
